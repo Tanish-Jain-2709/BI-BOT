@@ -1,0 +1,4 @@
+Dockerfile
+data/
+logs/
+__pycache__/

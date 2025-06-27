@@ -1,0 +1,43 @@
+# Core FastAPI and server components
+fastapi==0.115.12         # latest FastAPI :contentReference[oaicite:0]{index=0}
+uvicorn[standard]==0.34.2 # latest Uvicorn :contentReference[oaicite:1]{index=1}
+
+# Data validation and modeling
+pydantic==2.11.5          # latest Pydantic V2 :contentReference[oaicite:2]{index=2}
+
+# LangChain ecosystem
+langchain==0.3.25         # latest LangChain :contentReference[oaicite:3]{index=3}
+langchain-ollama==0.3.3   # latest Ollama integration :contentReference[oaicite:4]{index=4}
+langchain-core==0.3.62    # latest Core :contentReference[oaicite:5]{index=5}
+
+# LangGraph for stateful agent workflows
+langgraph==0.4.7          # latest LangGraph :contentReference[oaicite:6]{index=6}
+
+# Alternate JSON parsing and observability
+orjson==3.10.18           # latest orjson :contentReference[oaicite:7]{index=7}
+langsmith==0.3.42         # latest LangSmith :contentReference[oaicite:8]{index=8}
+
+# HTTP clients
+httpx==0.28.1      
+requests<2.32.0       # latest HTTPX :contentReference[oaicite:9]{index=9}
+# Environment management
+python-dotenv==1.1.0      # latest python-dotenv :contentReference[oaicite:11]{index=11}
+
+# Structured logging
+structlog==25.3.0         # latest structlog :contentReference[oaicite:12]{index=12}
+
+# Async MQTT support
+asyncio-mqtt==0.16.2      # latest asyncio-mqtt :contentReference[oaicite:13]{index=13}
+
+# Fast non-cryptographic hashing
+xxhash==3.5.0             # latest xxhash :contentReference[oaicite:14]{index=14}
+
+pandas==2.1.4
+numpy==1.24.3
+matplotlib==3.7.2
+seaborn==0.12.2
+scikit-learn==1.3.0
+plotly==5.17.0
+openpyxl==3.1.2
+safeexecute==0.0.9
+
