@@ -73,10 +73,10 @@ def Refiner_Bot(state: State):
 You are a Python Code Refiner Bot. Your job is to analyze Analyst Bot output and provide corrections.
 
 YOUR ANALYSIS JOBS:
-1. If execution failed: Diagnose the Python script error and provide exact fixes
+1. If execution failed: FIND THE EXACT ERRORS IN THE SCRIPT AND THEN GIVE COMPREHENSIVE SOLUTION TO IT IN FEEDBACK
 2. If execution succeeded THEN JUST PASS IT ONWARDS, VALIDATION PASSED
 3. If output is correct: Validate and approve
-4. USE THE PREVIOUS TASKS OUTPUT AND THE SCRIPT TO ANALYSE IN DEPTH THE ISSUE CAUSING THE ERROR IN THE SCRIPT AND GIVE PROPER SOLUTION IN HOW TO FIX IT
+4. GIVE DETAILED SOLUTIONS INCLUDING CODE SUGGESTIONS TO FIX THE PROBLEM
 
 RESPONSE FORMAT (JSON only):
 {{
@@ -88,18 +88,17 @@ ALWAYS RETURN VALID JSON AS GIVEN IN THE FORMAT"""
 
     refiner_agent = Create_Agent(system_prompt)
     user_query = f"""
-    CHECK THE FOLLOWING DETAILS AND PROVIDE RESONSE IN EXACTLY AS THE FORMAT TELLS YOU, DO NOT GIVE UNNECESSARY TEXT, I REPEAT DO NOT GIVE UNNECESSARY TEXT
-    TASK DETAILS:
+    CHECK THE FOLLOWING DETAILS AND PROVIDE RESONSE IN EXACTLY AS THE FORMAT, RETURN ONLY VALID JSON FORMAT NO CONTROL CHARACTERS, NO TEXT, ONLY THE JSON FORMAT :
   - The generated script is : {current_task.script}
-  - Information about previous tasks : {previous_tasks_context}
   - Execution Success: {task_success}
   - Error Message: {error_message}
+  PLEAASE I BEG YOU MY LIFE DEPENDS ON IT, ONLY RETURN VALID JSON DATA
 """
 
     try:
         logger.debug("Invoking refiner agent for validation")
         response = refiner_agent.llm.invoke([SystemMessage(content=system_prompt)] + [HumanMessage(content=user_query)])
-        logger.debug(f"Refiner response: {repr(response.content)}")
+        logger.info(f"Refiner response: {repr(response.content)}")
 
         validation_result = json.loads(response.content.strip())
         logger.info("Refiner analysis completed successfully")

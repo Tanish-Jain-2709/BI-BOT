@@ -65,7 +65,7 @@ class State(BaseModel):
 class Create_Agent():
     def __init__(self, prompt):
         self.llm = ChatOllama(
-            model="llama3.1:8b",
+            model="qwen2.5:7b",
             temperature=0,
             base_url=os.getenv("OLLAMA_BASE_URL", "http://ollama:11434")
         )
@@ -117,7 +117,7 @@ def python_executor(script: str, output_filename: str = "output.txt") -> str:
             with open(output_path, 'r') as f:
                 output_data = f.read().strip()
                 logger.info(f"Successfully read output data from {output_path}")
-                logger.debug(f"Output data type: {type(output_data)}")
+                logger.info(f"Output data type: {type(output_data)}")
                 if output_data:
                     return output_data
 

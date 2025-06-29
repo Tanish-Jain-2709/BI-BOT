@@ -75,6 +75,7 @@ def Analyst_Bot(state: State):
     if state.refiner_feedback:
         if hasattr(current_task, 'script') and current_task.script:
             retry_context += f"FAILED SCRIPT:\n{current_task.script}\n\nFix the above script to resolve the error.\n"
+            retry_context += f" The error in the script and some suggested changes are as follows : {state.refiner_feedback}"
             logger.info(f"THE RETRY CONTEXT IS {retry_context}")
 
     # Define output filename and full path for current task
@@ -91,8 +92,7 @@ RULES:
 2. Read data from previous files when needed (use full paths provided above)
 3. Save final result as JSON: with open('{output_path}', 'w') as f: f.write(json.dumps(result))
 4. Return ONLY executable Python code - no explanations, no markdown, no code blocks
-5. If the retry context shows a failed script then do not return the same script make changes to the script as indicated by the user prompt to make the code correct
-7. Save the data directly in the output file, do not save it unde
+5. IF A FAILED SCRIPT IS PROVIDED THEN CHANGE THE SCRIPT, DO NOT GIVE THE SAME SCRIPT UNDER ANY CIRCUMSTANCES
 6. RETURN ONLY THE SCRIPT AS RAW TEXT
 
 Task: """
